@@ -25,9 +25,15 @@ async function run() {
         const projectCollection = client.db('Luxury_Living').collection('projects');
 
 
-
+        // get data for projects page
         app.get('/projects', async (req, res) => {
             const result = await projectCollection.find().toArray();
+            res.send(result);
+        })
+
+        //get data for projects in homepage
+        app.get('/homeProjects', async (req, res) => {
+            const result = await projectCollection.find().limit(3).toArray();
             res.send(result);
         })
     }
