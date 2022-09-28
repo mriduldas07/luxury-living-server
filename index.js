@@ -27,6 +27,8 @@ async function run() {
         const projectCollection = client.db('Luxury_Living').collection('projects');
         //2. serviceCollection
         const serviceCollection = client.db('Luxury_Living').collection('services');
+        //3. testimonialsCollection
+        const testimonialsCollection = client.db('Luxury_Living').collection('testimonials')
 
 
         // get data for projects page
@@ -52,6 +54,12 @@ async function run() {
             const result = await serviceCollection.find().limit(3).toArray();
             res.send(result);
         });
+
+        // get testimonials for home page
+        app.get('/homeTestimonials', async (req, res) => {
+            const result = await testimonialsCollection.find().limit(3).toArray();
+            res.send(result);
+        })
     }
     finally {
 
